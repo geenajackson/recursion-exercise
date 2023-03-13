@@ -11,7 +11,7 @@ function product(nums, i = 0) {
 function longest(words, i = 0, size = 0) {
   if (i === words.length) return size;
   if (words[i].length > size) { size = words[i].length; }
-  return longest(words, i + 1, size = size);
+  return longest(words, i + 1, size);
 }
 
 /** everyOther: return a string with every other letter. */
@@ -19,7 +19,7 @@ function longest(words, i = 0, size = 0) {
 function everyOther(str, i = 0, letters = "") {
   if (i === str.length) return letters;
   if (i % 2 === 0) { letters = letters + str.charAt(i) }
-  return everyOther(str, i + 1, letters = letters);
+  return everyOther(str, i + 1, letters);
 }
 
 /** isPalindrome: checks whether a string is a palindrome or not. */
@@ -42,17 +42,25 @@ function findIndex(arr, val, i = 0) {
 
 /** revString: return a copy of a string, but in reverse. */
 
-function revString(str) {
-
+function revString(str, i = 0, revStr = "") {
+  if (i === str.length) return revStr;
+  let backIndex = str.length - i;
+  revStr = revStr + str.charAt(backIndex - 1);
+  return revString(str, i + 1, revStr);
 }
 
 /** gatherStrings: given an object, return an array of all of the string values. */
 
-function gatherStrings(obj) {
-
+function gatherStrings(obj, i = 0, arr = []) {
+  if (i === Object.keys(obj).length) return arr;
+  let keys = Object.keys(obj);
+  let key = keys[i]
+  if (typeof obj[key] === "string") arr.push(obj[key]);
+  if (typeof obj[key] === "object") gatherStrings(obj[key], 0, arr);
+  return gatherStrings(obj, i + 1, arr)
 }
 
-/** binarySearch: given a sorted array of numbers, and a value,
+/** Further Study: binarySearch: given a sorted array of numbers, and a value,
  * return the index of that value (or -1 if val is not present). */
 
 function binarySearch(arr, val) {
