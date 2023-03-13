@@ -24,7 +24,11 @@ function everyOther(str, i = 0, letters = "") {
 
 /** isPalindrome: checks whether a string is a palindrome or not. */
 
-function isPalindrome(str) {
+function isPalindrome(str, i = 0) {
+  if (i === str.length) return true;
+  let backIndex = str.length - i;
+  if (str.charAt(i) !== str.charAt(backIndex - 1)) return false;
+  return isPalindrome(str, i + 1);
 
 }
 
