@@ -2,19 +2,24 @@
 
 function product(nums, i = 0) {
   if (i === nums.length) return 1;
+  //i++ creates an infinite loop
   return nums[i] * product(nums, i + 1);
 }
 
 /** longest: return the length of the longest word in an array of words. */
 
-function longest(words) {
-
+function longest(words, i = 0, size = 0) {
+  if (i === words.length) return size;
+  if (words[i].length > size) { size = words[i].length; }
+  return longest(words, i + 1, size = size);
 }
 
 /** everyOther: return a string with every other letter. */
 
-function everyOther(str) {
-
+function everyOther(str, i = 0, letters = "") {
+  if (i === str.length) return letters;
+  if (i % 2 === 0) { letters = letters + str.charAt(i) }
+  return everyOther(str, i + 1, letters = letters);
 }
 
 /** isPalindrome: checks whether a string is a palindrome or not. */
